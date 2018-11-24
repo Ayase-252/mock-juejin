@@ -3,7 +3,8 @@
   <tag-list :tags="tags"></tag-list>
   <main class="content-wrapper">
     <div class="content-left-column">
-      <control-panel></control-panel>
+      <control-panel class="column-item"></control-panel>
+      <post-list class="column-item"></post-list>
     </div>
     <div class="content-right-column">
       <advertisement imgSrc="https://via.placeholder.com/240X200" advUrl="#"></advertisement>
@@ -52,6 +53,10 @@ export default {
 
 .content-left-column {
   flex: 1 1 auto;
+
+  & > div:nth-child(n + 2) {
+    margin-top: 20px;
+  }
 }
 
 .content-right-column {
