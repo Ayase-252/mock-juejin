@@ -43,7 +43,7 @@ export default {
 </script>
 
 <style lang="less">
-@import '../../style/common.less';
+@import (reference) '../../style/common.less';
 
 .hover-effect-mixin () {
   transition: background-color .3s;

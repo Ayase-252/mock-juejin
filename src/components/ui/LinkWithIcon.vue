@@ -16,7 +16,7 @@ export default {
 
 
 <style lang="less">
-@import '../../style/common.less';
+@import (reference) '../../style/common.less';
 
 .link-with-icon {
   display: flex;

@@ -47,7 +47,7 @@ export default {
 
 
 <style lang="less">
-@import '../../../style/common.less';
+@import (reference) '../../../style/common.less';
 .header-nav-menu-wrapper {
   display: block;
 }

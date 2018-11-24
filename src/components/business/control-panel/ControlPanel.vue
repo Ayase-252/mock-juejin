@@ -25,7 +25,7 @@ export default {
 
 
 <style lang="less">
-@import '../../../style/common.less';
+@import (reference) '../../../style/common.less';
 
 .control-panel-wrapper {
   height: 50px;

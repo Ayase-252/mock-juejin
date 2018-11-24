@@ -59,7 +59,7 @@ export default {
 </script>
 
 <style lang="less">
-@import '../../../style/common.less';
+@import (reference) '../../../style/common.less';
 
 .header-wrapper {
   height: 60px;

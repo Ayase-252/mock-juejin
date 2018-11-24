@@ -18,7 +18,7 @@ export default {
 
 
 <style lang="less">
-@import '../../../style/common.less';
+@import (reference) '../../../style/common.less';
 
 .taglist-wrapper {
   width: 100%;
