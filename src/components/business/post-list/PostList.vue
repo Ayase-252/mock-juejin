@@ -1,6 +1,7 @@
 <template>
+<div>
   <div class="post-list-header">
-    <ul class="post-colnum-list">
+    <ul class="post-column-list">
       <li class="post-list-header-item"><a href="#">热门</a></li>
       <li class="post-list-header-item"><a href="#">最新</a></li>
       <li class="post-list-header-item"><a href="#">评论</a></li>
@@ -11,7 +12,33 @@
       <li class="post-list-header-item"><a href="">历史最热</a></li>
     </ul>
   </div>
+  <div class="post-list-content-wrapper">
+    <post-entry v-for="article in articles" :key="article.title" :article-obj="article"></post-entry>
+  </div>
+</div>
 </template>
+
+<script>
+import PostEntry from './PostEntry.vue'
+import { TimelineApi } from '../../../api/index'
+
+export default {
+  data () {
+    return {
+      articles: []
+    }
+  },
+  components: {
+    PostEntry
+  },
+  async created () {
+    this.articles = await TimelineApi.getPosts() 
+  },
+  filters: {
+  }
+}
+</script>
+
 
 <style lang="less">
 @import (reference) '../../../style/common.less';
@@ -33,9 +60,11 @@
       color: @active-color;
     }
   }
+
+  border-bottom: 1px solid rgba(178,186,194,.15)
 }
 
-.post-colnum-list{
+.post-column-list{
   display: flex;
 
   .post-list-header-item:not(:last-child) {
@@ -67,5 +96,9 @@
 
 .post-list-header-item {
   padding: 0 1.2rem;
+}
+
+.post-list-content-wrapper {
+  background-color: #FFFFFF;
 }
 </style>

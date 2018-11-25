@@ -1,16 +1,11 @@
 <template>
   <form class="search-box-wrapper" :class="{'search-active': isFocus}">
     <input type="text" @focus="onFocus" @blur="onBlur" v-model="text" :placeholder="placeholder" @change="$emit('change', $event.target.value)">
-    <font-awesome-icon class="search-box-icon" icon="search" @click="$emit('click', $event)"></font-awesome-icon>
+    <v-icon class="search-box-icon" name="search" @click="$emit('click', $event)"></v-icon>
   </form>
 </template>
 
 <script>
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faSearch } from '@fortawesome/free-solid-svg-icons'
-
-library.add(faSearch)
 
 export default {
   data () {
@@ -24,9 +19,6 @@ export default {
       type: String,
       default: ''
     }
-  },
-  components: {
-    FontAwesomeIcon
   },
   methods: {
     onFocus () {

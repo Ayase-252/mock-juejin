@@ -1,5 +1,6 @@
 <template>
-  <div class="button-with-icon-wrapper">
+  <div class="button-with-icon-wrapper" :class="{active: isActive}" 
+    @click="forwardClick">
     <v-icon :name="iconName"></v-icon>
     <span v-if="$slots.default" class="button-illustration">
       <slot></slot>
@@ -9,8 +10,18 @@
 
 <script>
 export default {
+  data () {
+    return {
+      isActive: false
+    }
+  },
   props: {
     iconName: String
+  },
+  methods: {
+    forwardClick() {
+      this.$emit('click', () => this.isActive=true)
+    }
   }
 }
 </script>
