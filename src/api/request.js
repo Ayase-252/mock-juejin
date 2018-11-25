@@ -7,6 +7,4 @@ const instance =  axios.create({
   }
 })
 
-console.log(process.env.VUE_APP_API_BASEURL)
-
 export default instance

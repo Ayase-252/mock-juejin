@@ -15,7 +15,7 @@ export default new Router({
         {
           path: 'timeline',
           name: 'timeline',
-          component: () => import(/* webpackChunkname: timeline */ './views/Timeline.vue')
+          component: () => import('./views/Timeline.vue')
         }
       ]
     }]
