@@ -8,6 +8,7 @@
     </div>
     <div class="content-right-column">
       <advertisement imgSrc="https://via.placeholder.com/240X200" advUrl="#"></advertisement>
+      <interested-book-list></interested-book-list>
     </div>
   </main>
 </div>
@@ -18,6 +19,7 @@ import TagList from '../components/business/tag-list/TagList.vue'
 import Advertisement from '../components/ui/Advertisement.vue'
 import ControlPanel from '../components/business/control-panel/ControlPanel.vue'
 import PostList from '../components/business/post-list/PostList.vue'
+import InterestedBookList from '../components/business/interested-book-list/InterestedBookList'
 
 export default {
   data () {
@@ -35,7 +37,8 @@ export default {
     TagList,
     Advertisement,
     ControlPanel,
-    PostList
+    PostList,
+    InterestedBookList
   }
 }
 </script>
@@ -62,6 +65,10 @@ export default {
 .content-right-column {
   margin-left: 30px;
   width: 240px;
+
+  & > div:nth-child(n + 2) {
+    margin-top: 20px;
+  }
 }
 
 @media screen and (max-width: 700px) {
