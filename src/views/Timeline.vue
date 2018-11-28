@@ -15,11 +15,11 @@
 </template>
 
 <script>
-import TagList from '../components/business/tag-list/TagList.vue'
-import Advertisement from '../components/ui/Advertisement.vue'
-import ControlPanel from '../components/business/control-panel/ControlPanel.vue'
-import PostList from '../components/business/post-list/PostList.vue'
-import InterestedBookList from '../components/business/interested-book-list/InterestedBookList'
+import TagList from 'business/tag-list/TagList.vue'
+import Advertisement from 'ui/Advertisement.vue'
+import ControlPanel from 'business/control-panel/ControlPanel.vue'
+import PostList from 'business/post-list/PostList.vue'
+import InterestedBookList from 'business/interested-book-list/InterestedBookList'
 
 export default {
   data () {
