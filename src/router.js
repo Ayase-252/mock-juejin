@@ -16,6 +16,11 @@ export default new Router({
           path: 'timeline',
           name: 'timeline',
           component: () => import('./views/Timeline.vue')
+        },
+        {
+          path: 'posts/:id',
+          name: 'posts',
+          component: () => import('./views/Post.vue')
         }
       ]
     }]

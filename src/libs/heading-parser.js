@@ -4,7 +4,8 @@ const createHeading = (title, identifier, subHeadings = []) => {
   return {
     title,
     identifier,
-    subHeadings
+    subHeadings,
+    isActive: false
   }
 }
 
@@ -39,4 +40,4 @@ const parseHeadings = (htmlFrag, currLvl = 2) => {
   return res
 }
 
-module.exports.parseHeadings = parseHeadings
+export default parseHeadings

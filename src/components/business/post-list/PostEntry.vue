@@ -6,11 +6,11 @@
       <bread-crumb-item>{{articleObj.publishTime | formatDate}}</bread-crumb-item>
       <bread-crumb seperator="/">
         <bread-crumb-item v-for="tag in articleObj.tags">
-          <a :href="tag.link">{{tag.name}}</a>
+          <article :href="tag.link">{{tag.name}}</article>
         </bread-crumb-item>
       </bread-crumb>
     </bread-crumb>
-    <h2 class="article-title"><a href="#">{{articleObj.title}}</a></h2>
+    <h2 class="article-title"><router-link :to="{ name:'posts', params: {id: articleObj.id} }">{{articleObj.title}}</router-link></h2>
     <div class="article-operation">
       <div class="button-list">
         <button-with-icon icon-name="thumbs-up" @click.once="likePost">{{articleObj.likes}}</button-with-icon>

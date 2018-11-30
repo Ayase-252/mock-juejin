@@ -30,17 +30,14 @@ export default {
       dropDownConfig: {
         mainBtnText: '写文章',
         onMainBtnClick () {
-          console.log('write')
         },
         menuItems: [{
           text: '发布沸点',
           onClick () {
-            console.log('publish thoughts')
           }
         }, {
           text: '分享链接',
           onClick () {
-            console.log('share link')
           }
         }]
       }

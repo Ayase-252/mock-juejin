@@ -28,7 +28,7 @@ export default {
     try {
       this.books = await BookApi.getInterestedBooks()
     } catch (err) {
-      console.log(err)
+      throw err
     }
   }
 }
