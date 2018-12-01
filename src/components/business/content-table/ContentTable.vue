@@ -12,7 +12,7 @@
       <div class="table-marker"></div>
       <a
         :class="[levelClass]"
-        :href="heading.link"
+        :href="'#' + heading.title"
       >{{heading.title}}</a>
     </div>
       <content-table
@@ -46,6 +46,8 @@ export default {
 @import (reference) "~style/common";
 
 .content-table {
+  position: sticky;
+  top: 30px;
   list-style-type: none;
   display: flex;
   flex-flow: column;
@@ -66,15 +68,13 @@ export default {
 .content-item-wrapper {
   display: flex;
   align-items: center;
+  cursor: pointer;
   
-  &.active {
+  &.active, &:hover{
+    background: #ebedef;
     a {
       color: @active-color;
     }
-  }
-
-  &.active, &:hover {
-    background: #ebedef;
   }
 }
 

@@ -1,7 +1,7 @@
 <template>
 <div class="post-wrapper">
   <div class="post-left-col">
-    <content-viewer :title="title" :content="content"></content-viewer>
+    <content-viewer :title="title" :content="content" @active-heading-change="onActiveHeadingChange"></content-viewer>
   </div>
   <div class="post-right-col">
     <content-table :headings="headings"></content-table>
@@ -21,7 +21,9 @@ export default {
     return {
       headings: [],
       content: '',
-      title: ''
+      title: '',
+      activeHeading: null,
+      headingMap: {}
     }
   },
   components: {
@@ -29,11 +31,28 @@ export default {
     ContentViewer
   },
 
+  methods: {
+    onActiveHeadingChange(heading) {
+      if(this.activeHeading) {
+        this.activeHeading.isActive = false
+      }
+      this.headingMap[heading].isActive = true
+      this.activeHeading = this.headingMap[heading]
+    }
+  },
+
   async created() {
+    const dfs = (node) => {
+      node.forEach(elem => {
+        this.headingMap[elem.title] = elem
+        dfs(elem.subHeadings)
+      })
+    }
     const post = await PostApi.getPost(this.$route.params.id)
     this.headings = parseHeadings(post.content)
     this.content = post.content
     this.title = post.title
+    dfs(this.headings)
   }
 }
 </script>

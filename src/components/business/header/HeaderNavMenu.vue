@@ -5,7 +5,7 @@
       <font-awesome-icon icon="caret-down"></font-awesome-icon> 
     </div>
     <ul class="navmenu-wrapper" :class="{'phone-show': isShowInPhone}">
-      <li class="nav-item list-item header-homepage"><a href="#">首页</a></li>
+      <li class="nav-item list-item header-homepage"><a href="/">首页</a></li>
       <li class="nav-item list-item"><a href="#">动态</a></li>
       <li class="nav-item list-item"><a href="#">小册</a></li>
       <li class="nav-item list-item"><a href="#">开源库</a></li>

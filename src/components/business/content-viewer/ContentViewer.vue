@@ -1,14 +1,85 @@
 <template>
-  <div class="content-viewer-wrapper">
+  <div
+    ref="contentViewerWrapper"
+    class="content-viewer-wrapper"
+  >
     <h1>{{title}}</h1>
-    <div v-html="content" class="content-viewer-content">
+    <div
+      v-html="content"
+      class="content-viewer-content"
+    >
     </div>
   </div>
 </template>
 
 <script>
+import debounce from 'lodash.debounce'
+
 export default {
-  props: ['content', 'title']
+  props: ['content', 'title'],
+  data () {
+    return {
+      offsets: [],
+      targets: [],
+      activeTargetIdx: 0,
+      onScrollHandler: null,
+    }
+  },
+  methods: {
+    parseHeadingPosition () {
+      this.offsets = []
+      this.targets = []
+      const headings = document.querySelectorAll('h2, h3, h4')
+      headings.forEach(elem => {
+        elem.setAttribute('id', elem.innerHTML)
+        this.offsets.push(elem.offsetTop)
+        this.targets.push(elem.innerHTML)
+      })
+    },
+    notifyActiveHeading () {
+      this.$emit('active-heading-change', this.targets[this.activeTargetIdx])
+    }
+  },
+  watch: {
+    activeTargetIdx (oldVal, newVal) {
+      if (oldVal !== newVal) {
+        this.notifyActiveHeading()
+      }
+    }
+  },
+  mounted () {
+    this.parseHeadingPosition()
+    const onScroll = () => {
+      const scrollY = window.scrollY
+      const offsets = this.offsets
+      const numHeadings = offsets.length
+      let activeTargetIdx = this.activeTargetIdx
+      if (activeTargetIdx + 1 < numHeadings && offsets[activeTargetIdx + 1] < scrollY) {
+        while (activeTargetIdx + 1 < numHeadings && offsets[activeTargetIdx + 1] < scrollY) {
+          activeTargetIdx++
+        }
+      }
+      if (activeTargetIdx > 0 && offsets[activeTargetIdx] > scrollY) {
+        while (activeTargetIdx > 0 && offsets[activeTargetIdx] > scrollY) {
+          activeTargetIdx--
+        }
+      }
+      this.activeTargetIdx = activeTargetIdx
+    }
+    this.onScrollHandler = debounce(onScroll, 50, { maxWait: 70 })
+    window.addEventListener('scroll', this.onScrollHandler, true)
+  },
+
+  updated () {
+    // Reparse headings for updated document
+    this.parseHeadingPosition()
+    this.onScrollHandler()
+    this.notifyActiveHeading()
+  },
+
+  beforeDestroy () {
+    window.removeEventListener('scroll', this.onScrollHandler)
+  }
 }
 </script>
 
@@ -18,9 +89,13 @@ export default {
   font-size: 15px;
   font-weight: 400;
   padding: 10px 20px;
-  background: #FFFFFF;
+  background: #ffffff;
 
-  h1, h2, h3, h4, h5 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
     color: #333;
     line-height: 1.5;
     margin-bottom: 10px;
@@ -28,7 +103,7 @@ export default {
   }
 
   h1 {
-    margin: .67em 0;
+    margin: 0.67em 0;
     font-size: 2.5rem;
     font-weight: 700;
     line-height: 1.5;
@@ -69,15 +144,16 @@ export default {
     color: #0269c8;
     text-decoration: none;
   }
-  
-  code, pre {
-    font-family: Menlo,Monaco,Consolas,Courier New,monospace;
+
+  code,
+  pre {
+    font-family: Menlo, Monaco, Consolas, Courier New, monospace;
   }
   code {
     background-color: #fff5f5;
     color: #ff502c;
-    font-size: .87em;
-    padding: .065em .4em;
+    font-size: 0.87em;
+    padding: 0.065em 0.4em;
   }
 }
 </style>
