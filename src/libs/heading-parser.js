@@ -10,7 +10,7 @@ const createHeading = (title, identifier, subHeadings = []) => {
 }
 
 const parseHeadings = (htmlFrag, currLvl = 2) => {
-  const reg = new RegExp(`<h${currLvl}.*>(.*?)</h${currLvl}>`, 'g')
+  const reg = new RegExp(`<h${currLvl}.*?>(.*?)</h${currLvl}>`, 'g')
 
   const res = []
   let lastMatchEnd = null

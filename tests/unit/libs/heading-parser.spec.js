@@ -1,6 +1,6 @@
-const chai = require('chai')
-const { parseHeadings } = require('libs/heading-parser')
-const chaiSubset = require('chai-subset')
+import chai from 'chai'
+import parseHeadings from 'libs/heading-parser'
+import chaiSubset from 'chai-subset'
 
 chai.use(chaiSubset)
 const expect = chai.expect
@@ -36,7 +36,7 @@ describe('parseHeadings', function () {
       ])
     ])
   })
-  it('should extract the structure of headings of content with attribution in heading tags', function () {
+  it('should extract the structure of headings of content with attributes in heading tags', function () {
     const htmlFragment = `
       <h2 class="whatever">1</h2>
       <h3 style="border: none">1-1</h3>
@@ -57,6 +57,14 @@ describe('parseHeadings', function () {
         createHeading('2-1', []),
         createHeading('2-2', [])
       ])
+    ])
+  }),
+  it('should deal this fragment correctly', function () {
+    const htmlFragment = "<h2>First topic</h2><p>Longlong<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></p><h2>another</h2><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><p>End</p>"
+    const headings = parseHeadings(htmlFragment)
+    expect(headings).to.containSubset([
+      createHeading('First topic'),
+      createHeading('another')
     ])
   })
 })
