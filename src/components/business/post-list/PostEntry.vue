@@ -5,8 +5,8 @@
       <bread-crumb-item><a href="#">{{articleObj.author}}</a></bread-crumb-item>
       <bread-crumb-item>{{articleObj.publishTime | formatDate}}</bread-crumb-item>
       <bread-crumb seperator="/">
-        <bread-crumb-item v-for="tag in articleObj.tags">
-          <article :href="tag.link">{{tag.name}}</article>
+        <bread-crumb-item v-for="tag in articleObj.tags" :key="tag.name">
+          <a :href="tag.link">{{tag.name}}</a>
         </bread-crumb-item>
       </bread-crumb>
     </bread-crumb>
@@ -30,6 +30,10 @@
 import BreadCrumb from '../../ui/BreadCrumb.vue'
 import BreadCrumbItem from '../../ui/BreadCrumbItem.vue'
 import ButtonWithIcon from '../../ui/ButtonWithIcon.vue'
+import 'vue-awesome/icons/thumbs-up'
+import 'vue-awesome/icons/comment-alt'
+import 'vue-awesome/icons/share-square'
+import 'vue-awesome/icons/star'
 
 export default {
   props: {

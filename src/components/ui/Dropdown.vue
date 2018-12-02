@@ -2,7 +2,7 @@
 <div class="dropdown-button">
   <button @click="config.onMainBtnClick">{{ config.mainBtnText }}</button>
   <div class="dropdown-button-icon" @click.stop="openMenu">
-    <font-awesome-icon icon="caret-down"></font-awesome-icon>
+    <v-icon name="caret-down"></v-icon>
   </div>
   <ul class="dropdown-menu" :class="{ 'dropdown-hidden':isMenuHidden }">
     <li class="dropdown-menu-item" v-for="menuItem in config.menuItems" 
@@ -12,11 +12,7 @@
 </template>
 
 <script>
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faCaretDown } from '@fortawesome/free-solid-svg-icons'
-
-library.add(faCaretDown)
+import 'vue-awesome/icons/caret-down'
 
 export default {
   data () {
@@ -25,9 +21,6 @@ export default {
     }
   },
   props: ['config'],
-  components: {
-    FontAwesomeIcon
-  },
   methods: {
     openMenu () {
       this.isMenuHidden = false

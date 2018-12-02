@@ -6,7 +6,7 @@ export default class Books  {
       const res = await request.get('/books')
       return res.data
     } catch (err) {
-      console.error(err)
+      throw err
     }
   }
 }

@@ -1,19 +1,12 @@
 <template>
 <div>
-  <font-awesome-icon class="notify-icon" icon="bell"></font-awesome-icon>
+  <v-icon class="notify-icon" name="bell" :scale="1.4"></v-icon>
 </div>
 </template>
 
 <script>
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faBell } from '@fortawesome/free-solid-svg-icons'
-
-library.add(faBell)
+import 'vue-awesome/icons/bell'
 export default {
-  components: {
-    FontAwesomeIcon
-  }
 }
 </script>
 
@@ -21,7 +14,6 @@ export default {
 @import "../../style/common.less";
 
 .notify-icon {
-  font-size: 2rem;
   color: #71777c;
   &:hover {
     color: @active-color;

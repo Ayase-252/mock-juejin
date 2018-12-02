@@ -13,6 +13,7 @@
 
 <script>
 import ButtonWithRightIcon from 'ui/ButtonWithRightIcon'
+import 'vue-awesome/icons/caret-right'
 
 export default {
   props: {

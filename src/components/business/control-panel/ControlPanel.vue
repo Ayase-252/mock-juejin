@@ -14,6 +14,9 @@
 
 <script>
 import LinkWithIcon from '../../ui/LinkWithIcon.vue'
+import 'vue-awesome/icons/regular/paper-plane'
+import 'vue-awesome/icons/regular/file-alt'
+import 'vue-awesome/icons/link'
 
 export default {
   components: {

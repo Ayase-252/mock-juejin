@@ -2,7 +2,7 @@
   <div class="header-nav-menu-wrapper">
     <div class="phone-show-menu" @click.stop="openMenu">
       <span>首页</span>
-      <font-awesome-icon icon="caret-down"></font-awesome-icon> 
+      <v-icon name="caret-down"></v-icon>
     </div>
     <ul class="navmenu-wrapper" :class="{'phone-show': isShowInPhone}">
       <li class="nav-item list-item header-homepage"><a href="/">首页</a></li>
@@ -15,20 +15,13 @@
 </template>
 
 <script>
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faCaretDown } from '@fortawesome/free-solid-svg-icons'
-
-library.add(faCaretDown)
+import 'vue-awesome/icons/caret-down'
 
 export default {
   data () {
     return {
       isShowInPhone: false
     }
-  },
-  components: {
-    FontAwesomeIcon
   },
   methods: {
     openMenu () {
