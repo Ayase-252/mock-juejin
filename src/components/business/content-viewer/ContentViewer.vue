@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import debounce from 'lodash.debounce'
+import debounce from 'libs/debounce'
 
 export default {
   props: ['content', 'title'],
